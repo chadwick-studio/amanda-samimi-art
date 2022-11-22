@@ -352,6 +352,7 @@ h1 {
 
   &__image {
     object-fit: cover;
+    -webkit-touch-callout: none;
   }
 }
 
@@ -536,6 +537,7 @@ form {
       width: fit-content;
       height: fit-content;
       overflow: hidden;
+      -webkit-touch-callout: none;
     }
   }
 }

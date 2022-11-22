@@ -637,6 +637,7 @@ h1 {
 .gallery__image {
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-touch-callout: none;
 }
 
 @media only screen and (min-width: 700px) {
@@ -804,6 +805,7 @@ form textarea:not([type=submit]):focus {
   height: -moz-fit-content;
   height: fit-content;
   overflow: hidden;
+  -webkit-touch-callout: none;
 }
 
 .zoom--active {
