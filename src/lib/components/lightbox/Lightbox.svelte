@@ -75,7 +75,7 @@
 						defaultOverflow;
 					bodyWrapper.setAttribute(
 						"aria-hidden",
-						fales
+						false
 					);
 				}
 			}
