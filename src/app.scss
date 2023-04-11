@@ -1,0 +1,180 @@
+// CSS Reset
+
+/***
+    The new CSS reset - version 1.8.4 (last updated 14.2.2023)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+ */
+
+*:where(
+    :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
+  ) {
+  all: unset;
+  display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+  cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+  white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+  all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+  color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+  content: initial;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+  display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+  -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+  all: revert;
+}
+
+// Mixins
+@mixin cube($width, $height, $depth, $rotateX: 0, $rotateY: 0, $rotateZ: 0) {
+  transform-style: preserve-3d;
+  height: calc(#{$height} * 1svw);
+  width: calc(#{$width} * 1svw);
+  position: relative;
+  transform: rotateX(calc(#{$rotateX} * 1deg)) rotateY(calc(#{$rotateY} * 1deg))
+    rotateZ(calc(#{$rotateZ} * 1deg));
+
+  @for $i from 1 through 6 {
+    div:nth-of-type(#{$i}) {
+      position: absolute;
+    }
+
+    @if $i <= 2 {
+      div:nth-of-type(#{$i}) {
+        height: calc(#{$height} * 1svw);
+        width: calc(#{$width} * 1svw);
+      }
+    } @else if $i >= 5 {
+      div:nth-of-type(#{$i}) {
+        height: calc(#{$depth} * 1svw);
+        width: calc(#{$width} * 1svw);
+      }
+    } @else {
+      div:nth-of-type(#{$i}) {
+        height: calc(#{$height} * 1svw);
+        width: calc(#{$depth} * 1svw);
+      }
+    }
+  }
+  div {
+    &:nth-of-type(1) {
+      transform: translate3d(0, 0, calc(#{$depth} * 1svw * -0.5));
+    }
+    &:nth-of-type(2) {
+      transform: translate3d(0, 0, calc(#{$depth} * 1svw * 0.5));
+    }
+    &:nth-of-type(3) {
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%) rotateY(90deg)
+        translate3d(0, 0, calc(#{$width} * 1svw * -0.5));
+    }
+    &:nth-of-type(4) {
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%) rotateY(-90deg)
+        translate3d(0, 0, calc(#{$width} * 1svw * -0.5));
+    }
+    &:nth-of-type(5) {
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%) rotateX(-90deg)
+        translate3d(0, 0, calc(#{$height} * 1svw * -0.5));
+    }
+    &:nth-of-type(6) {
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%) rotateX(90deg)
+        translate3d(0, 0, calc(#{$height} * 1svw * -0.5));
+    }
+  }
+}
+
+//Screen Reader Only Class
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
