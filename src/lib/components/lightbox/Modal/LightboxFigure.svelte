@@ -28,7 +28,7 @@
 
 <style lang="scss">
 	.lightbox-figure {
-		font-family: le-monde-livre-std, serif;
+		font-family: "Source Serif Pro", serif;
 		display: flex;
 		align-items: end;
 		position: relative;

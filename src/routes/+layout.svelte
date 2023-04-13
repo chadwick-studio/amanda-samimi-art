@@ -6,26 +6,50 @@
 <div class="wrapper" aria-hidden="false">
 	<header>
 		<div class="nav-cube">
-			<div class="nav-cube_side" />
 			<div class="nav-cube_side">
-				<Nav />
+				<div class="nav-cube_border" />
 			</div>
-			<div class="nav-cube_side" />
-			<div class="nav-cube_side" />
-			<div class="nav-cube_side" />
-			<div class="nav-cube_side" />
+			<div class="nav-cube_side">
+				<div class="nav-cube_border">
+					<Nav />
+				</div>
+			</div>
+			<div class="nav-cube_side">
+				<div class="nav-cube_border" />
+			</div>
+
+			<div class="nav-cube_side">
+				<div class="nav-cube_border" />
+			</div>
+			<div class="nav-cube_side">
+				<div class="nav-cube_border" />
+			</div>
+			<div class="nav-cube_side">
+				<div class="nav-cube_border" />
+			</div>
 		</div>
 	</header>
 	<main>
 		<div class="main-cube">
+			<div class="main-cube_side">
+				<div class="main-cube_border" />
+			</div>
+			<div class="main-cube_side">
+				<div class="main-cube_border">
+					<slot />
+				</div>
+			</div>
+
 			<div class="main-cube_side" />
 			<div class="main-cube_side">
-				<slot />
+				<div class="main-cube_border" />
 			</div>
-			<div class="main-cube_side" />
-			<div class="main-cube_side" />
-			<div class="main-cube_side" />
-			<div class="main-cube_side" />
+			<div class="main-cube_side">
+				<div class="main-cube_border" />
+			</div>
+			<div class="main-cube_side">
+				<div class="main-cube_border" />
+			</div>
 		</div>
 	</main>
 </div>
@@ -41,102 +65,112 @@
 		$rotateZ: 0
 	) {
 		transform-style: preserve-3d;
-		height: calc(#{$height} * 1svw);
-		width: calc(#{$width} * 1svw);
+		height: calc(#{$height} * 1vw);
+		width: calc(#{$width} * 1vw);
 		position: relative;
 		transform: rotateX(calc(#{$rotateX} * 1deg))
 			rotateY(calc(#{$rotateY} * 1deg))
 			rotateZ(calc(#{$rotateZ} * 1deg));
 
 		@for $i from 1 through 6 {
-			div:nth-of-type(#{$i}) {
+			> div:nth-child(#{$i}) {
 				position: absolute;
 			}
 
 			@if $i <= 2 {
-				div:nth-of-type(#{$i}) {
-					height: calc(#{$height} * 1svw);
-					width: calc(#{$width} * 1svw);
+				> div:nth-child(#{$i}) {
+					height: calc(#{$height} * 1vw);
+					width: calc(#{$width} * 1vw);
 				}
 			} @else if $i >= 5 {
-				div:nth-of-type(#{$i}) {
-					height: calc(#{$depth} * 1svw);
-					width: calc(#{$width} * 1svw);
+				> div:nth-child(#{$i}) {
+					height: calc(#{$depth} * 1vw);
+					width: calc(#{$width} * 1vw);
 				}
 			} @else {
-				div:nth-of-type(#{$i}) {
-					height: calc(#{$height} * 1svw);
-					width: calc(#{$depth} * 1svw);
+				> div:nth-child(#{$i}) {
+					height: calc(#{$height} * 1vw);
+					width: calc(#{$depth} * 1vw);
 				}
 			}
 		}
-		div {
-			&:nth-of-type(1) {
+
+		> div {
+			&:nth-child(1) {
 				transform: translate3d(
 					0,
 					0,
-					calc(#{$depth} * 1svw * -0.5)
+					calc(#{$depth} * 1vw * -0.5)
 				);
 			}
-			&:nth-of-type(2) {
+			&:nth-child(2) {
 				transform: translate3d(
 					0,
 					0,
-					calc(#{$depth} * 1svw * 0.5)
+					calc(#{$depth} * 1vw * 0.5)
 				);
 			}
-			&:nth-of-type(3) {
+			&:nth-child(3) {
 				inset: 50% auto auto 50%;
 				transform: translate(-50%, -50%) rotateY(90deg)
 					translate3d(
 						0,
 						0,
-						calc(#{$width} * 1svw * -0.5)
+						calc(#{$width} * 1vw * -0.5)
 					);
 			}
-			&:nth-of-type(4) {
+			&:nth-child(4) {
 				inset: 50% auto auto 50%;
 				transform: translate(-50%, -50%) rotateY(-90deg)
 					translate3d(
 						0,
 						0,
-						calc(#{$width} * 1svw * -0.5)
+						calc(#{$width} * 1vw * -0.5)
 					);
 			}
-			&:nth-of-type(5) {
+			&:nth-child(5) {
 				inset: 50% auto auto 50%;
 				transform: translate(-50%, -50%) rotateX(-90deg)
 					translate3d(
 						0,
 						0,
-						calc(#{$height} * 1svw * -0.5)
+						calc(#{$height} * 1vw * -0.5)
 					);
 			}
-			&:nth-of-type(6) {
+			&:nth-child(6) {
 				inset: 50% auto auto 50%;
 				transform: translate(-50%, -50%) rotateX(90deg)
 					translate3d(
 						0,
 						0,
-						calc(#{$height} * 1svw * -0.5)
+						calc(#{$height} * 1vw * -0.5)
 					);
 			}
 		}
 	}
 
 	// Variables
-	$background: black;
+
+	// Fonts
+	@font-face {
+		font-family: "Source Serif Pro";
+		src: url("/fonts/source-serif-pro.woff2") format("woff2");
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
 
 	.wrapper {
+		--background-color: black;
 		--primary-color: hsl(329 100% 22%);
 		--primary-color-background: hsla(329 100% 22% / 0.04);
 		--text-color: hsl(176 59% 90%);
 		position: relative;
 		display: grid;
-		background-color: black;
+		background-color: var(--background-color);
 		grid-template: repeat(2, auto) / 1fr;
 		min-height: 100vh; //fallback
-		min-height: 100svh;
+		min-height: 100dvh;
 		overflow: scroll;
 		&::before {
 			content: "";
@@ -158,20 +192,28 @@
 		display: grid;
 		place-items: center;
 	}
+
 	.nav-cube,
 	.main-cube {
 		&_side {
 			background-color: var(--primary-color-background);
+			outline: 1px solid transparent;
 		}
 	}
+	.nav-cube_border,
+	.main-cube_border {
+		width: 100%;
+		height: 100%;
+	}
+
 	//Nav Cube
 	.nav-cube {
 		@include cube(80, 60, 20, 10, 10);
-		&_side {
-			border: 2px solid var(--primary-color);
-		}
 		margin-top: 5vw;
 		margin-bottom: 10vw;
+		&_border {
+			border: 2px solid var(--primary-color);
+		}
 	}
 	@media (min-width: 600px) {
 		.nav-cube {
@@ -188,11 +230,11 @@
 
 	//Main Cube
 	.main-cube {
-		@include cube(80, 160, 40, 10, -10);
-		&_side {
+		@include cube(80, 180, 40, 10, -10);
+		margin-bottom: 5vw;
+		&_border {
 			border: 6px solid var(--primary-color);
 		}
-		margin-bottom: 5svh;
 	}
 	@media (min-width: 1200px) {
 		.main-cube {

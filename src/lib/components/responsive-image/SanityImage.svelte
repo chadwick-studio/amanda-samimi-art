@@ -14,7 +14,7 @@
 	year = String(year).slice(0, 4);
 
 	const altTag = `${title}. ${medium}. ${height} by ${width} inches. ${year}`;
-	const description = `${medium}. <br>${height}×${width} in. <br>${year}.`;
+	const description = `${medium} <br>${height}×${width} inches <br>${year}`;
 </script>
 
 <Lightbox {title} {description}>

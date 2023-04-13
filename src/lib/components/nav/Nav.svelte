@@ -29,22 +29,21 @@
 	svg {
 		overflow: visible;
 	}
+
 	@font-face {
-		font-family: "Breve";
-		src: url("/fonts/BreveSC.woff2") format("woff2");
+		font-family: "Clearlight";
+		src: url("/fonts/clearlight.woff2") format("woff2");
 		font-weight: normal;
 		font-style: normal;
-		font-display: optional;
+		font-display: swap;
 	}
 
 	@font-face {
-		font-family: "scotch-display";
-		src: url("https://use.typekit.net/af/570200/00000000000000007735f84d/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3")
-			format("woff2");
-		font-display: optional;
+		font-family: "Ortica Light";
+		src: url("/fonts/ortica-light.woff2") format("woff2");
+		font-weight: normal;
 		font-style: normal;
-		font-weight: 600;
-		font-stretch: normal;
+		font-display: swap;
 	}
 	.container,
 	.wrapper,
@@ -70,21 +69,20 @@
 		--header-name: hsl(60, 100%, 63%);
 		text-align: right;
 		color: var(--header-name);
-		line-height: 0.8;
+		line-height: 0.65;
 		text-transform: uppercase;
-		font-family: "Breve";
+		font-family: "Clearlight", sans-serif;
 		a {
 			flex-direction: column;
 		}
 	}
 
 	ul {
-		font-family: scotch-display;
+		font-family: "Ortica Light";
 		flex-direction: column;
 		align-self: end;
 		a {
 			display: block;
-			line-height: 0.7;
 			color: var(--text-color);
 		}
 		text-transform: lowercase;
@@ -102,11 +100,11 @@
 	@container nav (width > 0) {
 		.wrapper {
 			h1 {
-				font-size: calc(25cqw + 0.5rem);
+				font-size: calc(33cqw + 0.5rem);
 			}
 			ul {
-				gap: 0.4em;
-				margin-bottom: 6cqh;
+				gap: 0.25em;
+				margin-bottom: 3cqh;
 				font-size: calc(5cqw + 0.5rem);
 			}
 		}
