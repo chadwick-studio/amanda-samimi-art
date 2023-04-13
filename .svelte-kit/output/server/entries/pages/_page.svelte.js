@@ -74,7 +74,7 @@ ${showCloseButton ? `<button${spread([escape_object(closeButtonProps), { title: 
 });
 const LightboxFigure_svelte_svelte_type_style_lang = "";
 const css$5 = {
-  code: '.lightbox-figure.svelte-wmzlig.svelte-wmzlig{font-family:le-monde-livre-std, serif;display:flex;align-items:end;position:relative;height:100vh;height:100svh}.lightbox-figure.expand.svelte-wmzlig>.svelte-wmzlig{flex-grow:1}.lightbox-caption.svelte-wmzlig.svelte-wmzlig{font-size:0.75rem;white-space:nowrap;font-style:normal;color:white;position:absolute;right:0;bottom:0;text-align:right;padding-block:0.5em;padding-inline:1em;background-color:rgba(0, 0, 0, 0.5);transition:opacity 150ms ease-out}.lightbox-caption.svelte-wmzlig h2.svelte-wmzlig{font-style:italic;line-height:1.5}p.svelte-wmzlig.svelte-wmzlig{display:none}@media(hover: hover){p.svelte-wmzlig.svelte-wmzlig{display:block;position:fixed;font-family:"Le Monde Livre";opacity:1;transform:opacity 150ms ease-out;font-size:0.75rem;bottom:0;right:1rem;bottom:0.25rem;color:white;mix-blend-mode:difference}.lightbox-figure.svelte-wmzlig:hover .lightbox-caption.svelte-wmzlig,.lightbox-figure.svelte-wmzlig:focus-visible .lightbox-caption.svelte-wmzlig{opacity:1}.lightbox-figure.svelte-wmzlig:hover+p.svelte-wmzlig,.lightbox-figure.svelte-wmzlig:focus-visible+p.svelte-wmzlig{opacity:0}.lightbox-caption.svelte-wmzlig.svelte-wmzlig{opacity:0}}',
+  code: '.lightbox-figure.svelte-185t2j5.svelte-185t2j5{font-family:"Source Serif Pro", serif;display:flex;align-items:end;position:relative;height:100vh;height:100svh}.lightbox-figure.expand.svelte-185t2j5>.svelte-185t2j5{flex-grow:1}.lightbox-caption.svelte-185t2j5.svelte-185t2j5{font-size:0.75rem;white-space:nowrap;font-style:normal;color:white;position:absolute;right:0;bottom:0;text-align:right;padding-block:0.5em;padding-inline:1em;background-color:rgba(0, 0, 0, 0.5);transition:opacity 150ms ease-out}.lightbox-caption.svelte-185t2j5 h2.svelte-185t2j5{font-style:italic;line-height:1.5}p.svelte-185t2j5.svelte-185t2j5{display:none}@media(hover: hover){p.svelte-185t2j5.svelte-185t2j5{display:block;position:fixed;font-family:"Le Monde Livre";opacity:1;transform:opacity 150ms ease-out;font-size:0.75rem;bottom:0;right:1rem;bottom:0.25rem;color:white;mix-blend-mode:difference}.lightbox-figure.svelte-185t2j5:hover .lightbox-caption.svelte-185t2j5,.lightbox-figure.svelte-185t2j5:focus-visible .lightbox-caption.svelte-185t2j5{opacity:1}.lightbox-figure.svelte-185t2j5:hover+p.svelte-185t2j5,.lightbox-figure.svelte-185t2j5:focus-visible+p.svelte-185t2j5{opacity:0}.lightbox-caption.svelte-185t2j5.svelte-185t2j5{opacity:0}}',
   map: null
 };
 const LightboxFigure = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -93,14 +93,14 @@ const LightboxFigure = create_ssr_component(($$result, $$props, $$bindings, slot
     $$bindings.description(description);
   $$result.css.add(css$5);
   return `<figure class="${[
-    "lightbox-figure svelte-wmzlig",
+    "lightbox-figure svelte-185t2j5",
     (imagePreset === "fullscreen" ? "fullscreen" : "") + " " + (imagePreset === "scroll" ? "scroll" : "") + " " + (enableImageExpand ? "expand" : "")
   ].join(" ").trim()}" tabindex="0">${slots.default ? slots.default({}) : ``}
 	<figcaption${spread([{ class: "lightbox-caption" }, escape_object($$restProps)], {
-    classes: (imagePreset === "fullscreen" ? "fullscreen" : "") + " svelte-wmzlig"
-  })}><h2 class="svelte-wmzlig">${escape(title)}</h2>
+    classes: (imagePreset === "fullscreen" ? "fullscreen" : "") + " svelte-185t2j5"
+  })}><h2 class="svelte-185t2j5">${escape(title)}</h2>
 		<!-- HTML_TAG_START -->${description}<!-- HTML_TAG_END --></figcaption></figure>
-<p class="svelte-wmzlig">Hover over or focus on painting to view its title and information</p>`;
+<p class="svelte-185t2j5">Hover over or focus on painting to view its title and information</p>`;
 });
 const ModalCover_svelte_svelte_type_style_lang = "";
 const css$4 = {
@@ -334,7 +334,7 @@ const SanityImage = create_ssr_component(($$result, $$props, $$bindings, slots) 
   let { year } = $$props;
   year = String(year).slice(0, 4);
   const altTag = `${title}. ${medium}. ${height} by ${width} inches. ${year}`;
-  const description = `${medium}. <br>${height}×${width} in. <br>${year}.`;
+  const description = `${medium} <br>${height}×${width} inches <br>${year}`;
   if ($$props.image === void 0 && $$bindings.image && image !== void 0)
     $$bindings.image(image);
   if ($$props.loading === void 0 && $$bindings.loading && loading !== void 0)
