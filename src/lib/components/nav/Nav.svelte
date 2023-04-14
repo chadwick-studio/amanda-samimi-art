@@ -66,7 +66,7 @@
 		container: nav / size;
 	}
 	h1 {
-		--header-name: hsl(60, 100%, 63%);
+		--header-name: hsl(202, 81%, 73%);
 		text-align: right;
 		color: var(--header-name);
 		line-height: 0.65;
