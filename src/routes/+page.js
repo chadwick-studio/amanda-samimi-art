@@ -7,13 +7,13 @@ const client = createClient({
 });
 
 export async function load({ }) {
-	const filter = `*[_type == "artwork"]{title, medium, image, height, width, year}`;
+	const filter = `*[_type == "artwork"]{title, medium, image, video, height, width, year}`;
 	const order = `|order(orderRank)`;
 	const query = filter + order;
 	const data = await client.fetch(query);
 	if (data) {
 		return {
-			images: data,
+			galleryItems: data,
 		};
 	}
 	return {

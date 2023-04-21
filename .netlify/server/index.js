@@ -1,6 +1,6 @@
 import { b as base, a as assets, r as reset, p as public_env, o as options, g as get_hooks, s as set_public_env } from "./chunks/internal.js";
 import * as devalue from "devalue";
-import { n as noop, s as safe_not_equal } from "./chunks/index.js";
+import { w as writable, r as readable } from "./chunks/index.js";
 import { parse, serialize } from "cookie";
 import * as set_cookie_parser from "set-cookie-parser";
 const DEV = false;
@@ -146,12 +146,10 @@ function method_not_allowed(mod, method) {
   });
 }
 function allowed_methods(mod) {
-  const allowed = [];
-  for (const method in ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]) {
-    if (method in mod)
-      allowed.push(method);
-  }
-  if (mod.GET || mod.HEAD)
+  const allowed = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"].filter(
+    (method) => method in mod
+  );
+  if ("GET" in mod || "HEAD" in mod)
     allowed.push("HEAD");
   return allowed;
 }
@@ -409,11 +407,7 @@ async function handle_action_json_request(event, options2, server) {
   } catch (e) {
     const err = normalize_error(e);
     if (err instanceof Redirect) {
-      return action_json({
-        type: "redirect",
-        status: err.status,
-        location: err.location
-      });
+      return action_json_redirect(err);
     }
     return action_json(
       {
@@ -428,6 +422,13 @@ async function handle_action_json_request(event, options2, server) {
 }
 function check_incorrect_fail_use(error2) {
   return error2 instanceof ActionFailure ? new Error(`Cannot "throw fail()". Use "return fail()"`) : error2;
+}
+function action_json_redirect(redirect) {
+  return action_json({
+    type: "redirect",
+    status: redirect.status,
+    location: redirect.location
+  });
 }
 function action_json(data, init2) {
   return json(data, init2);
@@ -753,53 +754,6 @@ async function stream_to_string(stream) {
     result += decoder.decode(value);
   }
   return result;
-}
-const subscriber_queue = [];
-function readable(value, start) {
-  return {
-    subscribe: writable(value, start).subscribe
-  };
-}
-function writable(value, start = noop) {
-  let stop;
-  const subscribers = /* @__PURE__ */ new Set();
-  function set(new_value) {
-    if (safe_not_equal(value, new_value)) {
-      value = new_value;
-      if (stop) {
-        const run_queue = !subscriber_queue.length;
-        for (const subscriber of subscribers) {
-          subscriber[1]();
-          subscriber_queue.push(subscriber, value);
-        }
-        if (run_queue) {
-          for (let i = 0; i < subscriber_queue.length; i += 2) {
-            subscriber_queue[i][0](subscriber_queue[i + 1]);
-          }
-          subscriber_queue.length = 0;
-        }
-      }
-    }
-  }
-  function update(fn) {
-    set(fn(value));
-  }
-  function subscribe(run, invalidate = noop) {
-    const subscriber = [run, invalidate];
-    subscribers.add(subscriber);
-    if (subscribers.size === 1) {
-      stop = start(set) || noop;
-    }
-    run(value);
-    return () => {
-      subscribers.delete(subscriber);
-      if (subscribers.size === 0 && stop) {
-        stop();
-        stop = null;
-      }
-    };
-  }
-  return { set, update, subscribe };
 }
 function hash(...values) {
   let hash2 = 5381;
@@ -1261,14 +1215,9 @@ async function render_response({
   let assets$1 = assets;
   let base_expression = s(base);
   if (!state.prerendering?.fallback) {
-    const segments = event.url.pathname.slice(base.length).split("/");
-    if (segments.length === 1 && base !== "") {
-      base$1 = `./${base.split("/").at(-1)}`;
-      base_expression = `new URL(${s(base$1)}, location).pathname`;
-    } else {
-      base$1 = segments.slice(2).map(() => "..").join("/") || ".";
-      base_expression = `new URL(${s(base$1)}, location).pathname.slice(0, -1)`;
-    }
+    const segments = event.url.pathname.slice(base.length).split("/").slice(2);
+    base$1 = segments.map(() => "..").join("/") || ".";
+    base_expression = `new URL(${s(base$1)}, location).pathname.slice(0, -1)`;
     if (!assets || assets[0] === "/" && assets !== SVELTE_KIT_ASSETS) {
       assets$1 = base$1;
     }
@@ -1399,10 +1348,9 @@ async function render_response({
     }
     const blocks = [];
     const properties = [
-      `env: ${s(public_env)}`,
       assets && `assets: ${s(assets)}`,
       `base: ${base_expression}`,
-      `element: document.currentScript.parentElement`
+      `env: ${s(public_env)}`
     ].filter(Boolean);
     if (chunks) {
       blocks.push(`const deferred = new Map();`);
@@ -1420,7 +1368,8 @@ async function render_response({
     blocks.push(`${global} = {
 						${properties.join(",\n						")}
 					};`);
-    const args = [`app`, `${global}.element`];
+    const args = [`app`, `element`];
+    blocks.push(`const element = document.currentScript.parentElement;`);
     if (page_config.ssr) {
       const serialized = { form: "null", error: "null" };
       blocks.push(`const data = ${data};`);
@@ -2550,7 +2499,9 @@ async function respond(request, options2, manifest, state) {
   };
   try {
     if (route && !is_data_request) {
-      if (route.page) {
+      if (url.pathname === base || url.pathname === base + "/") {
+        trailing_slash = "always";
+      } else if (route.page) {
         const nodes = await Promise.all([
           // we use == here rather than === because [undefined] serializes as "[null]"
           ...route.page.layouts.map((n) => n == void 0 ? n : manifest._.nodes[n]()),
@@ -2649,7 +2600,7 @@ async function respond(request, options2, manifest, state) {
     return response;
   } catch (e) {
     if (e instanceof Redirect) {
-      const response = is_data_request ? redirect_json_response(e) : redirect_response(e.status, e.location);
+      const response = is_data_request ? redirect_json_response(e) : route?.page && is_action_json_request(event) ? action_json_redirect(e) : redirect_response(e.status, e.location);
       add_cookies_to_headers(response.headers, Object.values(cookies_to_add));
       return response;
     }

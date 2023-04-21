@@ -1,237 +1,8 @@
-import { c as create_ssr_component, d as compute_rest_props, f as spread, h as escape_attribute_value, i as escape_object, o as onDestroy, j as add_attribute, k as createEventDispatcher, e as escape, v as validate_component, l as compute_slots, p as each } from "../../chunks/index.js";
+import { c as create_ssr_component, b as spread, d as escape_attribute_value, f as escape_object, h as createEventDispatcher, o as onDestroy, i as add_attribute, v as validate_component, a as subscribe, e as escape, j as each } from "../../chunks/index2.js";
 import imageUrlBuilder from "@sanity/image-url";
-const LightboxThumbnail_svelte_svelte_type_style_lang = "";
-const css$7 = {
-  code: "button.svelte-1iwkzpi{cursor:pointer}button.svelte-1iwkzpi:focus-visible{border:1px solid var(--text-color)}",
-  map: null
-};
-const LightboxThumbnail = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$restProps = compute_rest_props($$props, ["isVisible"]);
-  let { isVisible } = $$props;
-  if ($$props.isVisible === void 0 && $$bindings.isVisible && isVisible !== void 0)
-    $$bindings.isVisible(isVisible);
-  $$result.css.add(css$7);
-  return `<button${spread(
-    [
-      {
-        "aria-expanded": escape_attribute_value(isVisible)
-      },
-      { "aria-controls": "lightbox" },
-      escape_object($$restProps)
-    ],
-    {
-      classes: "lightbox-thumbnail svelte-1iwkzpi"
-    }
-  )}>${slots.default ? slots.default({}) : ``}
-</button>`;
-});
-const BodyChild = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$restProps = compute_rest_props($$props, []);
-  let targetElement;
-  let child;
-  const removeTarget = () => {
-    if (typeof document !== "undefined") {
-      document.body.removeChild(child);
-    }
-  };
-  onDestroy(removeTarget);
-  return `<div${spread(
-    [
-      { id: "lightbox" },
-      { "aria-label": "Image lightbox" },
-      { role: "dialog" },
-      escape_object($$restProps)
-    ],
-    {}
-  )}${add_attribute("this", targetElement, 0)}>${slots.default ? slots.default({}) : ``}</div>`;
-});
-const LightboxButton_svelte_svelte_type_style_lang = "";
-const css$6 = {
-  code: "button.svelte-1n0huew{--text-color:hsl(176 59% 90%);width:3em;aspect-ratio:1;color:white;position:absolute;top:0.5em;right:0.5em;z-index:5;cursor:pointer}button.svelte-1n0huew:focus-visible{border:2px solid var(--text-color)}.close-icon.svelte-1n0huew{stroke:white}",
-  map: null
-};
-const LightboxButton = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  createEventDispatcher();
-  let { closeButtonProps = {} } = $$props;
-  let { showCloseButton } = $$props;
-  let { enableEscapeToClose } = $$props;
-  let { imagePreset } = $$props;
-  if ($$props.closeButtonProps === void 0 && $$bindings.closeButtonProps && closeButtonProps !== void 0)
-    $$bindings.closeButtonProps(closeButtonProps);
-  if ($$props.showCloseButton === void 0 && $$bindings.showCloseButton && showCloseButton !== void 0)
-    $$bindings.showCloseButton(showCloseButton);
-  if ($$props.enableEscapeToClose === void 0 && $$bindings.enableEscapeToClose && enableEscapeToClose !== void 0)
-    $$bindings.enableEscapeToClose(enableEscapeToClose);
-  if ($$props.imagePreset === void 0 && $$bindings.imagePreset && imagePreset !== void 0)
-    $$bindings.imagePreset(imagePreset);
-  $$result.css.add(css$6);
-  return `
-
-${showCloseButton ? `<button${spread([escape_object(closeButtonProps), { title: "Close lightbox" }], {
-    classes: (imagePreset === "fullscreen" ? "fullscreen" : "") + " svelte-1n0huew"
-  })}><svg class="close-icon svelte-1n0huew" width="100%" height="100%" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000000" stroke-width="2"><line x1="16" y1="16" x2="48" y2="48"></line><line x1="48" y1="16" x2="16" y2="48"></line></svg>
-		<span class="sr-only">Close lightbox</span></button>` : ``}`;
-});
-const LightboxFigure_svelte_svelte_type_style_lang = "";
-const css$5 = {
-  code: '.lightbox-figure.svelte-185t2j5.svelte-185t2j5{font-family:"Source Serif Pro", serif;display:flex;align-items:end;position:relative;height:100vh;height:100svh}.lightbox-figure.expand.svelte-185t2j5>.svelte-185t2j5{flex-grow:1}.lightbox-caption.svelte-185t2j5.svelte-185t2j5{font-size:0.75rem;white-space:nowrap;font-style:normal;color:white;position:absolute;right:0;bottom:0;text-align:right;padding-block:0.5em;padding-inline:1em;background-color:rgba(0, 0, 0, 0.5);transition:opacity 150ms ease-out}.lightbox-caption.svelte-185t2j5 h2.svelte-185t2j5{font-style:italic;line-height:1.5}p.svelte-185t2j5.svelte-185t2j5{display:none}@media(hover: hover){p.svelte-185t2j5.svelte-185t2j5{display:block;position:fixed;font-family:"Le Monde Livre";opacity:1;transform:opacity 150ms ease-out;font-size:0.75rem;bottom:0;right:1rem;bottom:0.25rem;color:white;mix-blend-mode:difference}.lightbox-figure.svelte-185t2j5:hover .lightbox-caption.svelte-185t2j5,.lightbox-figure.svelte-185t2j5:focus-visible .lightbox-caption.svelte-185t2j5{opacity:1}.lightbox-figure.svelte-185t2j5:hover+p.svelte-185t2j5,.lightbox-figure.svelte-185t2j5:focus-visible+p.svelte-185t2j5{opacity:0}.lightbox-caption.svelte-185t2j5.svelte-185t2j5{opacity:0}}',
-  map: null
-};
-const LightboxFigure = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$restProps = compute_rest_props($$props, ["imagePreset", "enableImageExpand", "title", "description"]);
-  let { imagePreset } = $$props;
-  let { enableImageExpand } = $$props;
-  let { title } = $$props;
-  let { description } = $$props;
-  if ($$props.imagePreset === void 0 && $$bindings.imagePreset && imagePreset !== void 0)
-    $$bindings.imagePreset(imagePreset);
-  if ($$props.enableImageExpand === void 0 && $$bindings.enableImageExpand && enableImageExpand !== void 0)
-    $$bindings.enableImageExpand(enableImageExpand);
-  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-    $$bindings.title(title);
-  if ($$props.description === void 0 && $$bindings.description && description !== void 0)
-    $$bindings.description(description);
-  $$result.css.add(css$5);
-  return `<figure class="${[
-    "lightbox-figure svelte-185t2j5",
-    (imagePreset === "fullscreen" ? "fullscreen" : "") + " " + (imagePreset === "scroll" ? "scroll" : "") + " " + (enableImageExpand ? "expand" : "")
-  ].join(" ").trim()}" tabindex="0">${slots.default ? slots.default({}) : ``}
-	<figcaption${spread([{ class: "lightbox-caption" }, escape_object($$restProps)], {
-    classes: (imagePreset === "fullscreen" ? "fullscreen" : "") + " svelte-185t2j5"
-  })}><h2 class="svelte-185t2j5">${escape(title)}</h2>
-		<!-- HTML_TAG_START -->${description}<!-- HTML_TAG_END --></figcaption></figure>
-<p class="svelte-185t2j5">Hover over or focus on painting to view its title and information</p>`;
-});
-const ModalCover_svelte_svelte_type_style_lang = "";
-const css$4 = {
-  code: 'div.lightbox-overlay.svelte-12s1qno{position:fixed;z-index:1000;background-color:rgba(0 0 0 / 0.9);inset:0;overflow:hidden;display:grid;place-items:center}div.lightbox-overlay.svelte-12s1qno::before{content:"";position:absolute;inset:0;opacity:0;z-index:-1}',
-  map: null
-};
-const ModalCover = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$restProps = compute_rest_props($$props, ["transitionDuration"]);
-  let { transitionDuration } = $$props;
-  if ($$props.transitionDuration === void 0 && $$bindings.transitionDuration && transitionDuration !== void 0)
-    $$bindings.transitionDuration(transitionDuration);
-  $$result.css.add(css$4);
-  return `<div${spread(
-    [
-      { class: "lightbox-overlay" },
-      { "tab-index": "2" },
-      escape_object($$restProps)
-    ],
-    { classes: "svelte-12s1qno" }
-  )}>${slots.default ? slots.default({}) : ``}
-</div>`;
-});
-const Modal_svelte_svelte_type_style_lang = "";
-const css$3 = {
-  code: ".lightbox-main.svelte-10xqpz7{display:grid;place-items:center;position:relative}",
-  map: null
-};
-const Modal = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$restProps = compute_rest_props($$props, ["transitionDuration", "imagePreset"]);
-  let { transitionDuration } = $$props;
-  let { imagePreset } = $$props;
-  if ($$props.transitionDuration === void 0 && $$bindings.transitionDuration && transitionDuration !== void 0)
-    $$bindings.transitionDuration(transitionDuration);
-  if ($$props.imagePreset === void 0 && $$bindings.imagePreset && imagePreset !== void 0)
-    $$bindings.imagePreset(imagePreset);
-  $$result.css.add(css$3);
-  return `<div${spread([{ class: "lightbox-main" }, { "tab-index": "3" }, escape_object($$restProps)], {
-    classes: (imagePreset === "fullscreen" ? "fullscreen" : "") + " " + (imagePreset === "scroll" ? "scroll" : "") + " svelte-10xqpz7"
-  })}>${slots.default ? slots.default({}) : ``}
-</div>`;
-});
-const Lightbox = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $$slots = compute_slots(slots);
-  let { title } = $$props;
-  let { description } = $$props;
-  let { imagePreset } = $$props;
-  let { customization = {} } = $$props;
-  let { transitionDuration = 300 } = $$props;
-  let { keepBodyScroll = false } = $$props;
-  let { enableImageExpand = false } = $$props;
-  let { enableFallbackThumbnail = true } = $$props;
-  let { enableEscapeToClose = true } = $$props;
-  let { enableClickToClose = false } = $$props;
-  let { showCloseButton = true } = $$props;
-  let { isVisible = false } = $$props;
-  const toggle = () => {
-    isVisible = !isVisible;
-  };
-  const open = () => {
-    isVisible = true;
-  };
-  const close = () => {
-    isVisible = false;
-  };
-  const programmaticController = { toggle, open, close };
-  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-    $$bindings.title(title);
-  if ($$props.description === void 0 && $$bindings.description && description !== void 0)
-    $$bindings.description(description);
-  if ($$props.imagePreset === void 0 && $$bindings.imagePreset && imagePreset !== void 0)
-    $$bindings.imagePreset(imagePreset);
-  if ($$props.customization === void 0 && $$bindings.customization && customization !== void 0)
-    $$bindings.customization(customization);
-  if ($$props.transitionDuration === void 0 && $$bindings.transitionDuration && transitionDuration !== void 0)
-    $$bindings.transitionDuration(transitionDuration);
-  if ($$props.keepBodyScroll === void 0 && $$bindings.keepBodyScroll && keepBodyScroll !== void 0)
-    $$bindings.keepBodyScroll(keepBodyScroll);
-  if ($$props.enableImageExpand === void 0 && $$bindings.enableImageExpand && enableImageExpand !== void 0)
-    $$bindings.enableImageExpand(enableImageExpand);
-  if ($$props.enableFallbackThumbnail === void 0 && $$bindings.enableFallbackThumbnail && enableFallbackThumbnail !== void 0)
-    $$bindings.enableFallbackThumbnail(enableFallbackThumbnail);
-  if ($$props.enableEscapeToClose === void 0 && $$bindings.enableEscapeToClose && enableEscapeToClose !== void 0)
-    $$bindings.enableEscapeToClose(enableEscapeToClose);
-  if ($$props.enableClickToClose === void 0 && $$bindings.enableClickToClose && enableClickToClose !== void 0)
-    $$bindings.enableClickToClose(enableClickToClose);
-  if ($$props.showCloseButton === void 0 && $$bindings.showCloseButton && showCloseButton !== void 0)
-    $$bindings.showCloseButton(showCloseButton);
-  if ($$props.isVisible === void 0 && $$bindings.isVisible && isVisible !== void 0)
-    $$bindings.isVisible(isVisible);
-  if ($$props.programmaticController === void 0 && $$bindings.programmaticController && programmaticController !== void 0)
-    $$bindings.programmaticController(programmaticController);
-  return `${$$slots.thumbnail || enableFallbackThumbnail ? `${validate_component(LightboxThumbnail, "Thumbnail").$$render($$result, Object.assign({}, customization?.thumbnailProps || {}, { isVisible }), {}, {
-    default: () => {
-      return `${$$slots.thumbnail ? `${slots.thumbnail ? slots.thumbnail({}) : ``}` : `${slots.default ? slots.default({}) : ``}`}`;
-    }
-  })}` : ``}
-
-${isVisible ? `${validate_component(BodyChild, "BodyChild").$$render($$result, {}, {}, {
-    default: () => {
-      return `${validate_component(ModalCover, "ModalCover").$$render($$result, Object.assign({}, { transitionDuration }, customization.coverProps || {}), {}, {
-        default: () => {
-          return `${validate_component(LightboxButton, "Button").$$render(
-            $$result,
-            Object.assign(
-              {},
-              { imagePreset },
-              { showCloseButton },
-              { enableEscapeToClose },
-              {
-                closeButtonProps: customization.closeButtonProps
-              },
-              customization.lightboxHeaderProps || {}
-            ),
-            {},
-            {}
-          )}
-
-			${validate_component(Modal, "Modal").$$render($$result, Object.assign({}, { imagePreset }, { transitionDuration }, customization.lightboxProps || {}), {}, {
-            default: () => {
-              return `${validate_component(LightboxFigure, "Figure").$$render($$result, Object.assign({}, { imagePreset }, { title }, { description }, customization.lightboxFooterProps || {}, { enableImageExpand }), {}, {
-                default: () => {
-                  return `${slots.default ? slots.default({}) : ``}`;
-                }
-              })}`;
-            }
-          })}`;
-        }
-      })}`;
-    }
-  })}` : ``}`;
-});
+import "@vimeo/player";
+import "object-assign";
+import { r as readable, w as writable } from "../../chunks/index.js";
 function getImageDimensions(image) {
   if (!image?.asset?._ref) {
     return;
@@ -318,27 +89,139 @@ function getImageProps({
     height: retinaSizes[0] / imageDimensions.aspectRatio
   };
 }
-const SanityImage_svelte_svelte_type_style_lang = "";
-const css$2 = {
-  code: "img.svelte-1tyr5x5{width:100%;height:auto;transition:0.15s opacity}img[data-loaded=false].svelte-1tyr5x5{opacity:0}",
+const Image_svelte_svelte_type_style_lang = "";
+const css$5 = {
+  code: "img.svelte-ifgpwg{display:block;width:100%;height:auto;transition:0.15s opacity}img[data-loaded=false].svelte-ifgpwg{opacity:0}",
   map: null
 };
-const SanityImage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const Image = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { image } = $$props;
-  let { loading = "lazy" } = $$props;
+  let { title } = $$props;
+  let { medium } = $$props;
+  let { dimensions } = $$props;
+  let { year } = $$props;
+  let { loading = "eager" } = $$props;
   let loaded = false;
+  const altTag = [title, medium, dimensions, year].join(". ");
+  if ($$props.image === void 0 && $$bindings.image && image !== void 0)
+    $$bindings.image(image);
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.medium === void 0 && $$bindings.medium && medium !== void 0)
+    $$bindings.medium(medium);
+  if ($$props.dimensions === void 0 && $$bindings.dimensions && dimensions !== void 0)
+    $$bindings.dimensions(dimensions);
+  if ($$props.year === void 0 && $$bindings.year && year !== void 0)
+    $$bindings.year(year);
+  if ($$props.loading === void 0 && $$bindings.loading && loading !== void 0)
+    $$bindings.loading(loading);
+  $$result.css.add(css$5);
+  return `<img${spread(
+    [
+      { loading: escape_attribute_value(loading) },
+      { alt: escape_attribute_value(altTag) },
+      {
+        fetchpriority: escape_attribute_value(loading === "eager" ? "high" : void 0)
+      },
+      escape_object(getImageProps({ image })),
+      {
+        "data-loaded": escape_attribute_value(loaded)
+      }
+    ],
+    { classes: "svelte-ifgpwg" }
+  )}>`;
+});
+const VimeoPlayer_svelte_svelte_type_style_lang = "";
+const css$4 = {
+  code: ".vimeo-video-wrapper.svelte-12imaz8{width:clamp(300px, 80vw, 800px)}",
+  map: null
+};
+const VimeoPlayer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { options = () => ({}) } = $$props;
+  let { videoId } = $$props;
+  let { loop = false } = $$props;
+  let { autoplay = false } = $$props;
+  createEventDispatcher();
+  parseInt(Math.random() * 1e5).toString();
+  let elementId = `vimeo-player-${videoId}`;
+  let { player } = $$props;
+  function loadVideo(id) {
+    if (!player)
+      return;
+    return player.loadVideo(id);
+  }
+  onDestroy(() => {
+    if (player) {
+      player.unload();
+    }
+  });
+  if ($$props.options === void 0 && $$bindings.options && options !== void 0)
+    $$bindings.options(options);
+  if ($$props.videoId === void 0 && $$bindings.videoId && videoId !== void 0)
+    $$bindings.videoId(videoId);
+  if ($$props.loop === void 0 && $$bindings.loop && loop !== void 0)
+    $$bindings.loop(loop);
+  if ($$props.autoplay === void 0 && $$bindings.autoplay && autoplay !== void 0)
+    $$bindings.autoplay(autoplay);
+  if ($$props.player === void 0 && $$bindings.player && player !== void 0)
+    $$bindings.player(player);
+  $$result.css.add(css$4);
+  {
+    loadVideo(videoId);
+  }
+  return `
+
+
+
+<div${add_attribute("id", elementId, 0)} class="vimeo-video-wrapper svelte-12imaz8"></div>`;
+});
+const Video = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { video } = $$props;
+  let player;
+  if ($$props.video === void 0 && $$bindings.video && video !== void 0)
+    $$bindings.video(video);
+  let $$settled;
+  let $$rendered;
+  do {
+    $$settled = true;
+    $$rendered = `${validate_component(VimeoPlayer, "VimeoPlayer").$$render(
+      $$result,
+      { videoId: video, player },
+      {
+        player: ($$value) => {
+          player = $$value;
+          $$settled = false;
+        }
+      },
+      {}
+    )}`;
+  } while (!$$settled);
+  return $$rendered;
+});
+const LightboxFigure_svelte_svelte_type_style_lang = "";
+const css$3 = {
+  code: '.lightbox_figure.svelte-vo87eb.svelte-vo87eb{display:flex;align-items:center;position:relative;white-space:nowrap;text-align:right;position:relative;height:100vh;height:100dvh}.lightbox_figure_caption.svelte-vo87eb.svelte-vo87eb{position:absolute;right:0;bottom:0;padding-block:0.5em;padding-inline:1em;background-color:rgba(0, 0, 0, 0.6);line-height:1.5;opacity:1}.lightbox_instructions.svelte-vo87eb.svelte-vo87eb{opacity:0}@media(hover: hover){.lightbox_instructions.svelte-vo87eb.svelte-vo87eb{display:block;position:fixed;font-family:"Le Monde Livre";opacity:1;transform:opacity 300ms ease-out;font-size:0.75rem;bottom:0;right:1em;bottom:0.25em;color:hsl(176, 59%, 90%);mix-blend-mode:exclusion}.lightbox_figure_caption.svelte-vo87eb.svelte-vo87eb{opacity:0}.lightbox_figure.svelte-vo87eb:hover .lightbox_figure_caption.svelte-vo87eb,.lightbox_figure.svelte-vo87eb:focus-visible .lightbox_figure_caption.svelte-vo87eb{opacity:1}.lightbox_figure.svelte-vo87eb:hover+.lightbox_instructions.svelte-vo87eb,.lightbox_figure.svelte-vo87eb:focus-visible+.lightbox_instructions.svelte-vo87eb{opacity:0}}',
+  map: null
+};
+const LightboxFigure = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let dimensions;
+  let titleHTML;
+  let mediumHTML;
+  let mediumHTMLNoNull;
+  let dimensionsHTML;
+  let dimensionsHTMLNoNull;
+  let descriptionHTML;
+  let { image } = $$props;
+  let { video } = $$props;
   let { title } = $$props;
   let { medium } = $$props;
   let { height } = $$props;
   let { width } = $$props;
   let { year } = $$props;
-  year = String(year).slice(0, 4);
-  const altTag = `${title}. ${medium}. ${height} by ${width} inches. ${year}`;
-  const description = `${medium} <br>${height}×${width} inches <br>${year}`;
   if ($$props.image === void 0 && $$bindings.image && image !== void 0)
     $$bindings.image(image);
-  if ($$props.loading === void 0 && $$bindings.loading && loading !== void 0)
-    $$bindings.loading(loading);
+  if ($$props.video === void 0 && $$bindings.video && video !== void 0)
+    $$bindings.video(video);
   if ($$props.title === void 0 && $$bindings.title && title !== void 0)
     $$bindings.title(title);
   if ($$props.medium === void 0 && $$bindings.medium && medium !== void 0)
@@ -349,25 +232,53 @@ const SanityImage = create_ssr_component(($$result, $$props, $$bindings, slots) 
     $$bindings.width(width);
   if ($$props.year === void 0 && $$bindings.year && year !== void 0)
     $$bindings.year(year);
+  $$result.css.add(css$3);
+  dimensions = `${height} by ${width} inches`;
+  year = String(year).slice(0, 4);
+  titleHTML = `<span style="font-style: italic;">${title}</span>`;
+  mediumHTML = `${medium} <br>`;
+  mediumHTMLNoNull = mediumHTML.includes("null") ? "" : mediumHTML;
+  dimensionsHTML = `${height} by ${width} inches <br>`;
+  dimensionsHTMLNoNull = dimensionsHTML.includes("null") ? "" : dimensionsHTML;
+  descriptionHTML = `${titleHTML} <br>` + mediumHTMLNoNull + dimensionsHTMLNoNull + year;
+  return `<figure class="lightbox_figure svelte-vo87eb" tabindex="0" aria-describedby="lightbox-instructions">${video ? `${validate_component(Video, "Video").$$render($$result, { video }, {}, {})}` : `${validate_component(Image, "Image").$$render($$result, { title, medium, dimensions, year, image }, {}, {})}
+		<figcaption class="lightbox_figure_caption svelte-vo87eb"><!-- HTML_TAG_START -->${descriptionHTML}<!-- HTML_TAG_END --></figcaption>`}</figure>
+${image ? `<p class="lightbox_instructions svelte-vo87eb" id="lightbox-instructions" role="tooltip">Hover over or focus on painting to view details.
+	</p>` : ``}`;
+});
+const Lightbox_svelte_svelte_type_style_lang = "";
+const css$2 = {
+  code: '.lightbox-container.svelte-1vuqxqq.svelte-1vuqxqq{position:fixed;top:0;left:0;width:100%;height:100dvh;height:100vh;z-index:99999;border:none;padding:0;margin:0;background-color:rgba(0, 0, 0, 0.9);opacity:0;transition:opacity 300ms}.lightbox.svelte-1vuqxqq.svelte-1vuqxqq{font-family:"Source Serif Pro";color:hsl(176, 59%, 90%);position:relative;display:grid;place-items:center;height:100%;font-size:0.75rem}.lightbox.svelte-1vuqxqq svg.svelte-1vuqxqq{display:block}.lightbox_controls.svelte-1vuqxqq.svelte-1vuqxqq{position:absolute;cursor:pointer;mix-blend-mode:exclusion}.lightbox_controls.svelte-1vuqxqq.svelte-1vuqxqq:focus-visible{outline:1px solid hsl(176, 59%, 90%)}.lightbox_previous-image-button.svelte-1vuqxqq.svelte-1vuqxqq{left:1em;top:50%;transform:translateY(-50%)}.lightbox_next-image-button.svelte-1vuqxqq.svelte-1vuqxqq{top:50%;right:1em;transform:translateY(-50%)}.lightbox_close-button.svelte-1vuqxqq.svelte-1vuqxqq{top:0;right:0;margin-right:1em;margin-top:1em}.close-icon.svelte-1vuqxqq.svelte-1vuqxqq{width:2em}.chevron-icon.svelte-1vuqxqq.svelte-1vuqxqq{width:2em}.lightboxOpen.svelte-1vuqxqq.svelte-1vuqxqq{opacity:1}',
+  map: null
+};
+const Lightbox = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $galleryItems, $$unsubscribe_galleryItems;
+  let $isVisible, $$unsubscribe_isVisible;
+  let $currentItemIndex, $$unsubscribe_currentItemIndex;
+  let { galleryItems } = $$props;
+  $$unsubscribe_galleryItems = subscribe(galleryItems, (value) => $galleryItems = value);
+  let { currentItemIndex } = $$props;
+  $$unsubscribe_currentItemIndex = subscribe(currentItemIndex, (value) => $currentItemIndex = value);
+  let { isVisible } = $$props;
+  $$unsubscribe_isVisible = subscribe(isVisible, (value) => $isVisible = value);
+  let { dialog } = $$props;
+  if ($$props.galleryItems === void 0 && $$bindings.galleryItems && galleryItems !== void 0)
+    $$bindings.galleryItems(galleryItems);
+  if ($$props.currentItemIndex === void 0 && $$bindings.currentItemIndex && currentItemIndex !== void 0)
+    $$bindings.currentItemIndex(currentItemIndex);
+  if ($$props.isVisible === void 0 && $$bindings.isVisible && isVisible !== void 0)
+    $$bindings.isVisible(isVisible);
+  if ($$props.dialog === void 0 && $$bindings.dialog && dialog !== void 0)
+    $$bindings.dialog(dialog);
   $$result.css.add(css$2);
-  return `${validate_component(Lightbox, "Lightbox").$$render($$result, { title, description }, {}, {
-    default: () => {
-      return `<img${spread(
-        [
-          { loading: escape_attribute_value(loading) },
-          { alt: escape_attribute_value(altTag) },
-          {
-            fetchpriority: escape_attribute_value(loading === "eager" ? "high" : void 0)
-          },
-          escape_object(getImageProps({ image })),
-          {
-            "data-loaded": escape_attribute_value(loaded)
-          }
-        ],
-        { classes: "svelte-1tyr5x5" }
-      )}>`;
-    }
-  })}`;
+  $$unsubscribe_galleryItems();
+  $$unsubscribe_isVisible();
+  $$unsubscribe_currentItemIndex();
+  return `<dialog class="${["lightbox-container svelte-1vuqxqq", $isVisible === true ? "lightboxOpen" : ""].join(" ").trim()}"><div class="lightbox svelte-1vuqxqq">${validate_component(LightboxFigure, "LightboxFigure").$$render($$result, Object.assign({}, $galleryItems[$currentItemIndex]), {}, {})}
+		<button class="lightbox_previous-image-button lightbox_controls svelte-1vuqxqq"><svg class="chevron-icon svelte-1vuqxqq" width="100%" height="100%" viewBox="0 0 33 63" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2"><line x1="32" y1="62" x2="1" y2="32"></line><line x1="1" y1="32" x2="32" y2="1"></line></svg></button>
+		<button class="lightbox_next-image-button lightbox_controls svelte-1vuqxqq"><svg class="chevron-icon svelte-1vuqxqq" width="100%" height="100%" viewBox="0 0 33 63" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2"><line x1="1" y1="62" x2="32" y2="32"></line><line x1="32" y1="32" x2="1" y2="1"></line></svg></button>
+		<form method="dialog"><button class="lightbox_close-button lightbox_controls svelte-1vuqxqq"><svg class="close-icon svelte-1vuqxqq" width="100%" height="100%" viewBox="0 0 63 63" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2"><line x1="1" y1="1" x2="62" y2="62"></line><line x1="62" y1="1" x2="1" y2="62"></line></svg></button></form></div>
+</dialog>`;
 });
 const Masonry_svelte_svelte_type_style_lang = "";
 const css$1 = {
@@ -385,7 +296,7 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { masonryHeight = 0 } = $$props;
   let { animate = true } = $$props;
   let { style = `` } = $$props;
-  let { duration = 200 } = $$props;
+  let { duration = 0 } = $$props;
   let { columnClass = `` } = $$props;
   let { idKey = `id` } = $$props;
   let { getId = (item) => {
@@ -423,7 +334,7 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.class === void 0 && $$bindings.class && className !== void 0)
     $$bindings.class(className);
   $$result.css.add(css$1);
-  nCols = Math.min(items.length, Math.floor(masonryWidth / (minColWidth + gap)) || 1);
+  nCols = Math.min(3, Math.min(items.length, Math.floor(masonryWidth / (minColWidth + gap)) || 1));
   itemsToCols = items.reduce(
     (cols, item, idx) => {
       cols[idx % cols.length].push([item, idx]);
@@ -444,16 +355,20 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
-  code: ".gallery-container.svelte-1mdc7y4{overflow-y:auto;height:100%;color:white;padding:20px}",
+  code: ".gallery-container.svelte-o5s6q6.svelte-o5s6q6{overflow-y:auto;height:100%;color:white;padding:20px}.main-cube_side.svelte-o5s6q6.svelte-o5s6q6{background-color:var(--primary-color-background);outline:1px solid transparent}.main-cube_border.svelte-o5s6q6.svelte-o5s6q6{width:100%;height:100%}.main-cube.svelte-o5s6q6.svelte-o5s6q6{transform-style:preserve-3d;height:calc(180 * 1vw);width:calc(80 * 1vw);position:relative;transform:rotateX(calc(10 * 1deg)) rotateY(calc(-10 * 1deg)) rotateZ(calc(0 * 1deg));margin-bottom:5vw}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(1){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(1){height:calc(180 * 1vw);width:calc(80 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(2){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(2){height:calc(180 * 1vw);width:calc(80 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(3){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(3){height:calc(180 * 1vw);width:calc(40 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(4){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(4){height:calc(180 * 1vw);width:calc(40 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(5){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(5){height:calc(40 * 1vw);width:calc(80 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(6){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(6){height:calc(40 * 1vw);width:calc(80 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(1){transform:translate3d(0, 0, calc(40 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(2){transform:translate3d(0, 0, calc(40 * 1vw * 0.5));z-index:1}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(3){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateY(90deg) translate3d(0, 0, calc(80 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(4){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateY(-90deg) translate3d(0, 0, calc(80 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(5){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateX(-90deg) translate3d(0, 0, calc(180 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(6){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateX(90deg) translate3d(0, 0, calc(180 * 1vw * -0.5))}.main-cube_border.svelte-o5s6q6.svelte-o5s6q6{border:6px solid var(--primary-color)}@media(min-width: 1200px){.main-cube.svelte-o5s6q6.svelte-o5s6q6{transform-style:preserve-3d;height:calc(40 * 1vw);width:calc(70 * 1vw);position:relative;transform:rotateX(calc(10 * 1deg)) rotateY(calc(-10 * 1deg)) rotateZ(calc(0 * 1deg));margin-bottom:0}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(1){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(1){height:calc(40 * 1vw);width:calc(70 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(2){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(2){height:calc(40 * 1vw);width:calc(70 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(3){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(3){height:calc(40 * 1vw);width:calc(10 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(4){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(4){height:calc(40 * 1vw);width:calc(10 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(5){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(5){height:calc(10 * 1vw);width:calc(70 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(6){position:absolute}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(6){height:calc(10 * 1vw);width:calc(70 * 1vw)}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(1){transform:translate3d(0, 0, calc(10 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(2){transform:translate3d(0, 0, calc(10 * 1vw * 0.5));z-index:1}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(3){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateY(90deg) translate3d(0, 0, calc(70 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(4){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateY(-90deg) translate3d(0, 0, calc(70 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(5){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateX(-90deg) translate3d(0, 0, calc(40 * 1vw * -0.5))}.main-cube.svelte-o5s6q6>div.svelte-o5s6q6:nth-child(6){inset:50% auto auto 50%;transform:translate(-50%, -50%) rotateX(90deg) translate3d(0, 0, calc(40 * 1vw * -0.5))}}button.svelte-o5s6q6.svelte-o5s6q6{cursor:pointer}button.svelte-o5s6q6.svelte-o5s6q6:focus-visible{outline:1px solid hsl(176, 59%, 90%)}",
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $isVisible, $$unsubscribe_isVisible;
+  let $galleryItems, $$unsubscribe_galleryItems;
   let { data } = $$props;
-  const images = data.images;
-  images.forEach((image, i) => {
-    image.id = i + 1;
-  });
-  let [minColWidth, maxColWidth, gap] = [300, 600, 10];
+  const galleryItems = readable(data.galleryItems.map((item, i) => ({ ...item, id: i })));
+  $$unsubscribe_galleryItems = subscribe(galleryItems, (value) => $galleryItems = value);
+  let currentItemIndex = writable(0);
+  let dialog;
+  let isVisible = writable(false);
+  $$unsubscribe_isVisible = subscribe(isVisible, (value) => $isVisible = value);
+  let [minColWidth, maxColWidth, gap] = [300, 500, 20];
   let width, height;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
@@ -462,10 +377,20 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$rendered;
   do {
     $$settled = true;
-    $$rendered = `<div class="gallery-container svelte-1mdc7y4">${images ? `${validate_component(Masonry, "Masonry").$$render(
+    $$rendered = `${$$result.head += `<!-- HEAD_svelte-ak0nwk_START -->${$isVisible ? `<style lang="scss">/* Mixins */
+/* Variables */
+:root {
+  overflow: hidden;
+}</style>` : `<style lang="scss">/* Mixins */
+/* Variables */
+:root {
+  overflow: visible;
+}</style>`}<!-- HEAD_svelte-ak0nwk_END -->`, ""}
+<div class="main-cube svelte-o5s6q6"><div class="main-cube_side svelte-o5s6q6"><div class="main-cube_border svelte-o5s6q6"></div></div>
+	<div class="main-cube_side svelte-o5s6q6"><div class="main-cube_border svelte-o5s6q6"><div class="gallery-container svelte-o5s6q6">${validate_component(Masonry, "Masonry").$$render(
       $$result,
       {
-        items: images,
+        items: $galleryItems,
         minColWidth,
         maxColWidth,
         gap,
@@ -483,13 +408,29 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         }
       },
       {
-        default: ({ item: image }) => {
-          return `${validate_component(SanityImage, "SanityImage").$$render($$result, Object.assign({}, image, { loading: "eager" }), {}, {})}`;
+        default: ({ item }) => {
+          return `<button class="svelte-o5s6q6">${validate_component(Image, "Image").$$render($$result, Object.assign({}, item), {}, {})}</button>`;
         }
       }
-    )}` : ``}
-</div>`;
+    )}</div></div></div>
+	<div class="main-cube_side svelte-o5s6q6"></div>
+	<div class="main-cube_side svelte-o5s6q6"><div class="main-cube_border svelte-o5s6q6"></div></div>
+	<div class="main-cube_side svelte-o5s6q6"><div class="main-cube_border svelte-o5s6q6"></div></div>
+	<div class="main-cube_side svelte-o5s6q6"><div class="main-cube_border svelte-o5s6q6"></div></div></div>
+${validate_component(Lightbox, "Lightbox").$$render(
+      $$result,
+      {
+        currentItemIndex,
+        galleryItems,
+        dialog,
+        isVisible
+      },
+      {},
+      {}
+    )}`;
   } while (!$$settled);
+  $$unsubscribe_isVisible();
+  $$unsubscribe_galleryItems();
   return $$rendered;
 });
 export {

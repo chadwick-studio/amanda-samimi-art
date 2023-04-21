@@ -30,136 +30,13 @@
 		</div>
 	</header>
 	<main>
-		<div class="main-cube">
-			<div class="main-cube_side">
-				<div class="main-cube_border" />
-			</div>
-			<div class="main-cube_side">
-				<div class="main-cube_border">
-					<slot />
-				</div>
-			</div>
-
-			<div class="main-cube_side" />
-			<div class="main-cube_side">
-				<div class="main-cube_border" />
-			</div>
-			<div class="main-cube_side">
-				<div class="main-cube_border" />
-			</div>
-			<div class="main-cube_side">
-				<div class="main-cube_border" />
-			</div>
-		</div>
+		<slot />
 	</main>
 </div>
 
+<!-- Create Cube Components, pass slot tag down -->
+
 <style lang="scss">
-	// Cube Mixin
-	@mixin cube(
-		$width,
-		$height,
-		$depth,
-		$rotateX: 0,
-		$rotateY: 0,
-		$rotateZ: 0
-	) {
-		transform-style: preserve-3d;
-		height: calc(#{$height} * 1vw);
-		width: calc(#{$width} * 1vw);
-		position: relative;
-		transform: rotateX(calc(#{$rotateX} * 1deg))
-			rotateY(calc(#{$rotateY} * 1deg))
-			rotateZ(calc(#{$rotateZ} * 1deg));
-
-		@for $i from 1 through 6 {
-			> div:nth-child(#{$i}) {
-				position: absolute;
-			}
-
-			@if $i <= 2 {
-				> div:nth-child(#{$i}) {
-					height: calc(#{$height} * 1vw);
-					width: calc(#{$width} * 1vw);
-				}
-			} @else if $i >= 5 {
-				> div:nth-child(#{$i}) {
-					height: calc(#{$depth} * 1vw);
-					width: calc(#{$width} * 1vw);
-				}
-			} @else {
-				> div:nth-child(#{$i}) {
-					height: calc(#{$height} * 1vw);
-					width: calc(#{$depth} * 1vw);
-				}
-			}
-		}
-
-		> div {
-			&:nth-child(1) {
-				transform: translate3d(
-					0,
-					0,
-					calc(#{$depth} * 1vw * -0.5)
-				);
-			}
-			&:nth-child(2) {
-				transform: translate3d(
-					0,
-					0,
-					calc(#{$depth} * 1vw * 0.5)
-				);
-			}
-			&:nth-child(3) {
-				inset: 50% auto auto 50%;
-				transform: translate(-50%, -50%) rotateY(90deg)
-					translate3d(
-						0,
-						0,
-						calc(#{$width} * 1vw * -0.5)
-					);
-			}
-			&:nth-child(4) {
-				inset: 50% auto auto 50%;
-				transform: translate(-50%, -50%) rotateY(-90deg)
-					translate3d(
-						0,
-						0,
-						calc(#{$width} * 1vw * -0.5)
-					);
-			}
-			&:nth-child(5) {
-				inset: 50% auto auto 50%;
-				transform: translate(-50%, -50%) rotateX(-90deg)
-					translate3d(
-						0,
-						0,
-						calc(#{$height} * 1vw * -0.5)
-					);
-			}
-			&:nth-child(6) {
-				inset: 50% auto auto 50%;
-				transform: translate(-50%, -50%) rotateX(90deg)
-					translate3d(
-						0,
-						0,
-						calc(#{$height} * 1vw * -0.5)
-					);
-			}
-		}
-	}
-
-	// Variables
-
-	// Fonts
-	@font-face {
-		font-family: "Source Serif Pro";
-		src: url("/fonts/source-serif-pro.woff2") format("woff2");
-		font-weight: normal;
-		font-style: normal;
-		font-display: swap;
-	}
-
 	.wrapper {
 		--background-color: black;
 		--primary-color: hsl(329 100% 22%);
@@ -189,19 +66,18 @@
 
 	header,
 	main {
-		display: grid;
-		place-items: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
-	.nav-cube,
-	.main-cube {
+	.nav-cube {
 		&_side {
 			background-color: var(--primary-color-background);
 			outline: 1px solid transparent;
 		}
 	}
-	.nav-cube_border,
-	.main-cube_border {
+	.nav-cube_border {
 		width: 100%;
 		height: 100%;
 	}
@@ -224,21 +100,6 @@
 		.nav-cube {
 			@include cube(20, 15, 5, 10, 10);
 			margin-top: 20vw;
-			margin-bottom: 0;
-		}
-	}
-
-	//Main Cube
-	.main-cube {
-		@include cube(80, 180, 40, 10, -10);
-		margin-bottom: 5vw;
-		&_border {
-			border: 6px solid var(--primary-color);
-		}
-	}
-	@media (min-width: 1200px) {
-		.main-cube {
-			@include cube(70, 40, 10, 10, -10);
 			margin-bottom: 0;
 		}
 	}

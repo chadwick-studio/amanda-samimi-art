@@ -1,6 +1,7 @@
 <script>
 	import { flip } from "svelte/animate";
 	import { fade } from "svelte/transition";
+	import { onMount } from "svelte";
 	export let items;
 	export let minColWidth = 330;
 	export let maxColWidth = 500;
@@ -9,7 +10,7 @@
 	export let masonryHeight = 0;
 	export let animate = true;
 	export let style = ``;
-	export let duration = 200;
+	export let duration = 0;
 	export { className as class };
 	export let columnClass = ``;
 	// On non-primitive types, we need a property to tell masonry items apart. This component
@@ -22,8 +23,11 @@
 	};
 	let className = ``;
 	$: nCols = Math.min(
-		items.length,
-		Math.floor(masonryWidth / (minColWidth + gap)) || 1
+		3,
+		Math.min(
+			items.length,
+			Math.floor(masonryWidth / (minColWidth + gap)) || 1
+		)
 	);
 	$: itemsToCols = items.reduce(
 		(cols, item, idx) => {

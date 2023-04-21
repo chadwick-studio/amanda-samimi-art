@@ -1,36 +1,95 @@
 <script>
 	// Sanity Images
-	import SanityImage from "$lib/components/responsive-image/SanityImage.svelte";
+	import Image from "$lib/components/image/Image.svelte";
+	import Lightbox from "$lib/components/lightbox/Lightbox.svelte";
+	import Masonry from "$lib/components/masonry/Masonry.svelte";
+	import { readable, writable } from "svelte/store";
+	import { onMount } from "svelte";
 	export let data;
 
-	// Masonry
-	// Add ids for Masonry component
-	const images = data.images;
-	images.forEach((image, i) => {
-		image.id = i + 1;
-	});
+	const galleryItems = readable(
+		data.galleryItems.map((item, i) => ({
+			...item,
+			id: i,
+		}))
+	);
 
-	import Masonry from "$lib/components/masonry/Masonry.svelte";
+	let currentItemIndex = writable(0);
+	function getCurrentItemIndex(index) {
+		currentItemIndex.set(index);
+	}
 
-	let [minColWidth, maxColWidth, gap] = [300, 600, 10];
+	let dialog;
+	let isVisible = writable(false);
+
+	const showLightbox = () => {
+		dialog.show();
+		isVisible.set(true);
+	};
+
+	let [minColWidth, maxColWidth, gap] = [300, 500, 20];
 	let width, height;
+	onMount(() => {
+		dialog = document.querySelector("dialog");
+	});
 </script>
 
-<div class="gallery-container">
-	{#if images}
-		<Masonry
-			items={images}
-			{minColWidth}
-			{maxColWidth}
-			{gap}
-			let:item={image}
-			bind:width
-			bind:height
-		>
-			<SanityImage {...image} loading="eager" />
-		</Masonry>
+<svelte:head>
+	{#if $isVisible}
+		<style lang="scss">
+			:root {
+				overflow: hidden;
+			}
+		</style>
+	{:else}
+		<style lang="scss">
+			:root {
+				overflow: visible;
+			}
+		</style>
 	{/if}
+</svelte:head>
+<div class="main-cube">
+	<div class="main-cube_side">
+		<div class="main-cube_border" />
+	</div>
+	<div class="main-cube_side">
+		<div class="main-cube_border">
+			<div class="gallery-container">
+				<Masonry
+					items={$galleryItems}
+					{minColWidth}
+					{maxColWidth}
+					{gap}
+					let:item
+					bind:width
+					bind:height
+				>
+					<button
+						on:click={() =>
+							getCurrentItemIndex(
+								item.id
+							)}
+						on:click={showLightbox}
+					>
+						<Image {...item} />
+					</button>
+				</Masonry>
+			</div>
+		</div>
+	</div>
+	<div class="main-cube_side" />
+	<div class="main-cube_side">
+		<div class="main-cube_border" />
+	</div>
+	<div class="main-cube_side">
+		<div class="main-cube_border" />
+	</div>
+	<div class="main-cube_side">
+		<div class="main-cube_border" />
+	</div>
 </div>
+<Lightbox {currentItemIndex} {galleryItems} {dialog} {isVisible} />
 
 <style lang="scss">
 	.gallery-container {
@@ -38,5 +97,34 @@
 		height: 100%;
 		color: white;
 		padding: 20px;
+	}
+	.main-cube {
+		&_side {
+			background-color: var(--primary-color-background);
+			outline: 1px solid transparent;
+		}
+	}
+	.main-cube_border {
+		width: 100%;
+		height: 100%;
+	}
+	.main-cube {
+		@include cube(80, 180, 40, 10, -10);
+		margin-bottom: 5vw;
+		&_border {
+			border: 6px solid var(--primary-color);
+		}
+	}
+	@media (min-width: 1200px) {
+		.main-cube {
+			@include cube(70, 40, 10, 10, -10);
+			margin-bottom: 0;
+		}
+	}
+	button {
+		cursor: pointer;
+		&:focus-visible {
+			outline: 1px solid $text-color;
+		}
 	}
 </style>

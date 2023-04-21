@@ -1,135 +1,160 @@
 <script>
-	import Thumbnail from "./LightboxThumbnail.svelte";
-	import BodyChild from "./Modal/BodyChild.svelte";
-	import Button from "./Modal/LightboxButton.svelte";
-	import Figure from "./Modal/LightboxFigure.svelte";
-	import ModalCover from "./Modal/ModalCover.svelte";
-	import Modal from "./Modal/Modal.svelte";
-	import { onMount } from "svelte";
+	import LightboxFigure from "$lib/components/lightbox/LightboxFigure.svelte";
 
-	export let title;
-	export let description;
+	export let galleryItems;
+	export let currentItemIndex;
+	export let isVisible;
+	export let dialog;
+	function handlePreviousImage() {
+		currentItemIndex.update((currentIndex) => {
+			return (
+				(currentIndex + $galleryItems.length - 1) %
+				$galleryItems.length
+			);
+		});
+	}
 
-	export let imagePreset;
-
-	export let customization = {};
-	export let transitionDuration = 300;
-
-	export let keepBodyScroll = false;
-	export let enableImageExpand = false;
-	export let enableFallbackThumbnail = true;
-	export let enableEscapeToClose = true;
-	export let enableClickToClose = false;
-	export let showCloseButton = true;
-
-	export let isVisible = false;
-
-	let modalClicked = false;
-
-	const toggle = () => {
-		isVisible = !isVisible;
-		toggleScroll();
-	};
-
-	const open = () => {
-		isVisible = true;
-		toggleScroll();
-	};
-	const close = () => {
-		isVisible = false;
-		toggleScroll();
-	};
-
-	const coverClick = () => {
-		if (!modalClicked || enableClickToClose) {
-			close();
+	function handleNextImage() {
+		currentItemIndex.update((currentIndex) => {
+			return (currentIndex + 1) % $galleryItems.length;
+		});
+	}
+	function handleDialogKeyDown(e) {
+		if (e.key === "Escape") {
+			dialog.close();
+		} else if (e.key === "ArrowLeft") {
+			handlePreviousImage();
+		} else if (e.key === "ArrowRight") {
+			handleNextImage();
 		}
-		modalClicked = false;
-	};
-
-	const modalClick = () => {
-		modalClicked = true;
-	};
-
-	let toggleScroll = () => {};
-
-	export const programmaticController = {
-		toggle,
-		open,
-		close,
-	};
-
-	onMount(() => {
-		const defaultOverflow = document.body.style.overflow;
-		const bodyWrapper = document.querySelector(".wrapper");
-		toggleScroll = () => {
-			if (!keepBodyScroll) {
-				if (isVisible) {
-					document.body.style.overflow = "hidden";
-					bodyWrapper.setAttribute(
-						"aria-hidden",
-						true
-					);
-				} else {
-					document.body.style.overflow =
-						defaultOverflow;
-					bodyWrapper.setAttribute(
-						"aria-hidden",
-						false
-					);
-				}
-			}
-		};
-	});
+	}
 </script>
 
-{#if $$slots.thumbnail || enableFallbackThumbnail}
-	<Thumbnail
-		{...customization?.thumbnailProps || {}}
-		{isVisible}
-		on:click={toggle}
-	>
-		{#if $$slots.thumbnail}
-			<slot name="thumbnail" />
-		{:else}
-			<slot />
-		{/if}
-	</Thumbnail>
-{/if}
-
-{#if isVisible}
-	<BodyChild>
-		<ModalCover
-			{transitionDuration}
-			{...customization.coverProps || {}}
-			on:click={coverClick}
+<dialog
+	class="lightbox-container"
+	class:lightboxOpen={$isVisible === true}
+	on:keydown={handleDialogKeyDown}
+>
+	<div class="lightbox">
+		<LightboxFigure {...$galleryItems[$currentItemIndex]} />
+		<button
+			class="lightbox_previous-image-button lightbox_controls"
+			on:click={handlePreviousImage}
 		>
-			<Button
-				{imagePreset}
-				{showCloseButton}
-				{enableEscapeToClose}
-				closeButtonProps={customization.closeButtonProps}
-				{...customization.lightboxHeaderProps || {}}
-				on:close={close}
-			/>
-
-			<Modal
-				{imagePreset}
-				{transitionDuration}
-				on:click={modalClick}
-				{...customization.lightboxProps || {}}
+			<svg
+				class="chevron-icon"
+				width="100%"
+				height="100%"
+				viewBox="0 0 33 63"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				stroke="white"
+				stroke-width="2"
 			>
-				<Figure
-					{imagePreset}
-					{title}
-					{description}
-					{...customization.lightboxFooterProps ||
-						{}}
-					{enableImageExpand}
+				<line x1="32" y1="62" x2="1" y2="32" />
+				<line x1="1" y1="32" x2="32" y2="1" />
+			</svg>
+		</button>
+		<button
+			class="lightbox_next-image-button lightbox_controls"
+			on:click={handleNextImage}
+		>
+			<svg
+				class="chevron-icon"
+				width="100%"
+				height="100%"
+				viewBox="0 0 33 63"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				stroke="white"
+				stroke-width="2"
+			>
+				<line x1="1" y1="62" x2="32" y2="32" />
+				<line x1="32" y1="32" x2="1" y2="1" />
+			</svg>
+		</button>
+		<form method="dialog">
+			<button
+				class="lightbox_close-button lightbox_controls"
+				on:click={isVisible.set(false)}
+			>
+				<svg
+					class="close-icon"
+					width="100%"
+					height="100%"
+					viewBox="0 0 63 63"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					stroke="white"
+					stroke-width="2"
 				>
-					<slot />
-				</Figure>
-			</Modal>
-		</ModalCover>
-	</BodyChild>
-{/if}
+					<line x1="1" y1="1" x2="62" y2="62" />
+					<line x1="62" y1="1" x2="1" y2="62" />
+				</svg>
+			</button>
+		</form>
+	</div>
+</dialog>
+
+<style lang="scss">
+	.lightbox-container {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100dvh;
+		height: 100vh; //fallback
+		z-index: 99999;
+		border: none;
+		padding: 0;
+		margin: 0;
+		background-color: rgb(0 0 0 / 0.9);
+		opacity: 0;
+		transition: opacity 300ms;
+	}
+	.lightbox {
+		font-family: "Source Serif Pro";
+		color: $text-color;
+		position: relative;
+		display: grid;
+		place-items: center;
+		height: 100%;
+		font-size: 0.75rem;
+		svg {
+			display: block;
+		}
+		&_controls {
+			position: absolute;
+			cursor: pointer;
+			mix-blend-mode: exclusion;
+			&:focus-visible {
+				outline: 1px solid $text-color;
+			}
+		}
+	}
+	.lightbox_previous-image-button {
+		left: 1em;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	.lightbox_next-image-button {
+		top: 50%;
+		right: 1em;
+		transform: translateY(-50%);
+	}
+	.lightbox_close-button {
+		top: 0;
+		right: 0;
+		margin-right: 1em;
+		margin-top: 1em;
+	}
+	.close-icon {
+		width: 2em;
+	}
+	.chevron-icon {
+		width: 2em;
+	}
+	.lightboxOpen {
+		opacity: 1;
+	}
+</style>
