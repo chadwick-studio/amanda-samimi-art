@@ -123,6 +123,7 @@
 	}
 	button {
 		cursor: pointer;
+		display: block;
 		&:focus-visible {
 			outline: 1px solid $text-color;
 		}
