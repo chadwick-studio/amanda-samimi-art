@@ -8,7 +8,7 @@
 	export let year;
 	$: dimensions = `${height} by ${width} inches`;
 	$: year = String(year).slice(0, 4);
-	$: titleHTML = `<span style="font-style: italic;">${title}</span>`;
+	$: titleHTML = `<h2 style="font-style: italic;">${title}</h2>`;
 	$: mediumHTML = `${medium} <br>`;
 	$: mediumHTMLNoNull = mediumHTML.includes("null") ? "" : mediumHTML;
 	$: dimensionsHTML = `${height} by ${width} inches <br>`;
