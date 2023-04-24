@@ -4,6 +4,6 @@ export const index = 2;
 export const component = async () => (await import('../entries/pages/_page.svelte.js')).default;
 export { universal };
 export const universal_id = "src/routes/+page.js";
-export const imports = ["_app/immutable/entry/_page.svelte.b2547dfe.js","_app/immutable/chunks/index.e0c1dd86.js","_app/immutable/chunks/_commonjsHelpers.28e086c5.js","_app/immutable/chunks/index.cd539fef.js","_app/immutable/entry/_page.js.ef2ba012.js","_app/immutable/chunks/_page.83c56b41.js","_app/immutable/chunks/preload-helper.41c905a7.js"];
-export const stylesheets = ["_app/immutable/assets/_page.04150c59.css"];
+export const imports = ["_app/immutable/entry/_page.svelte.70f40b59.js","_app/immutable/chunks/index.265b9c8a.js","_app/immutable/chunks/_commonjsHelpers.28e086c5.js","_app/immutable/chunks/index.e0e6d577.js","_app/immutable/entry/_page.js.d87b4ffe.js","_app/immutable/chunks/_page.ad435ed2.js","_app/immutable/chunks/preload-helper.41c905a7.js"];
+export const stylesheets = ["_app/immutable/assets/_page.f409a845.css"];
 export const fonts = [];

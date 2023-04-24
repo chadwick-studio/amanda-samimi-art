@@ -1,7 +1,6 @@
 <script>
 	import { flip } from "svelte/animate";
 	import { fade } from "svelte/transition";
-	import { onMount } from "svelte";
 	export let items;
 	export let minColWidth = 330;
 	export let maxColWidth = 500;
@@ -87,5 +86,9 @@
 		display: grid;
 		height: max-content;
 		width: 100%;
+	}
+	p {
+		font-size: 4rem;
+		color: white;
 	}
 </style>

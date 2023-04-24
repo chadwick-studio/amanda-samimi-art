@@ -240,7 +240,7 @@ const LightboxFigure = create_ssr_component(($$result, $$props, $$bindings, slot
   mediumHTMLNoNull = mediumHTML.includes("null") ? "" : mediumHTML;
   dimensionsHTML = `${height} by ${width} inches <br>`;
   dimensionsHTMLNoNull = dimensionsHTML.includes("null") ? "" : dimensionsHTML;
-  descriptionHTML = `${titleHTML} <br>` + mediumHTMLNoNull + dimensionsHTMLNoNull + year;
+  descriptionHTML = titleHTML + mediumHTMLNoNull + dimensionsHTMLNoNull + year;
   return `<figure class="lightbox_figure svelte-vo87eb" tabindex="0" aria-describedby="lightbox-instructions">${video ? `${validate_component(Video, "Video").$$render($$result, { video }, {}, {})}` : `${validate_component(Image, "Image").$$render($$result, { title, medium, dimensions, year, image }, {}, {})}
 		<figcaption class="lightbox_figure_caption svelte-vo87eb"><!-- HTML_TAG_START -->${descriptionHTML}<!-- HTML_TAG_END --></figcaption>`}</figure>
 ${image ? `<p class="lightbox_instructions svelte-vo87eb" id="lightbox-instructions" role="tooltip">Hover over or focus on painting to view details.
@@ -274,7 +274,7 @@ const Lightbox = create_ssr_component(($$result, $$props, $$bindings, slots) => 
   $$unsubscribe_galleryItems();
   $$unsubscribe_isVisible();
   $$unsubscribe_currentItemIndex();
-  return `<dialog class="${["lightbox-container svelte-1vuqxqq", $isVisible === true ? "lightboxOpen" : ""].join(" ").trim()}"><div class="lightbox svelte-1vuqxqq">${validate_component(LightboxFigure, "LightboxFigure").$$render($$result, Object.assign({}, $galleryItems[$currentItemIndex]), {}, {})}
+  return `<dialog class="${["lightbox-container svelte-1vuqxqq", $isVisible === true ? "lightboxOpen" : ""].join(" ").trim()}"${add_attribute("this", dialog, 0)}><div class="lightbox svelte-1vuqxqq">${validate_component(LightboxFigure, "LightboxFigure").$$render($$result, Object.assign({}, $galleryItems[$currentItemIndex]), {}, {})}
 		<button class="lightbox_previous-image-button lightbox_controls svelte-1vuqxqq"><svg class="chevron-icon svelte-1vuqxqq" width="100%" height="100%" viewBox="0 0 33 63" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2"><line x1="32" y1="62" x2="1" y2="32"></line><line x1="1" y1="32" x2="32" y2="1"></line></svg></button>
 		<button class="lightbox_next-image-button lightbox_controls svelte-1vuqxqq"><svg class="chevron-icon svelte-1vuqxqq" width="100%" height="100%" viewBox="0 0 33 63" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2"><line x1="1" y1="62" x2="32" y2="32"></line><line x1="32" y1="32" x2="1" y2="1"></line></svg></button>
 		<form method="dialog"><button class="lightbox_close-button lightbox_controls svelte-1vuqxqq"><svg class="close-icon svelte-1vuqxqq" width="100%" height="100%" viewBox="0 0 63 63" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="2"><line x1="1" y1="1" x2="62" y2="62"></line><line x1="62" y1="1" x2="1" y2="62"></line></svg></button></form></div>
@@ -282,7 +282,7 @@ const Lightbox = create_ssr_component(($$result, $$props, $$bindings, slots) => 
 });
 const Masonry_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: ".svelte-1jzs15q:where(div.masonry){display:flex;justify-content:center;overflow-wrap:anywhere;box-sizing:border-box}.svelte-1jzs15q:where(div.masonry div.col){display:grid;height:max-content;width:100%}",
+  code: ".svelte-gz1f8p:where(div.masonry){display:flex;justify-content:center;overflow-wrap:anywhere;box-sizing:border-box}.svelte-gz1f8p:where(div.masonry div.col){display:grid;height:max-content;width:100%}",
   map: null
 };
 const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -342,9 +342,9 @@ const Masonry = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     },
     Array(nCols).fill(null).map(() => [])
   );
-  return `<div class="${"masonry " + escape(className, true) + " svelte-1jzs15q"}" style="${"gap: " + escape(gap, true) + "px; " + escape(style, true)}">${each(itemsToCols, (col) => {
-    return `<div class="${"col " + escape(columnClass, true) + " svelte-1jzs15q"}" style="${"gap: " + escape(gap, true) + "px; max-width: " + escape(maxColWidth, true) + "px;"}">${animate ? `${each(col, ([item, idx]) => {
-      return `<div class="svelte-1jzs15q">${slots.default ? slots.default({ idx, item }) : ``}
+  return `<div class="${"masonry " + escape(className, true) + " svelte-gz1f8p"}" style="${"gap: " + escape(gap, true) + "px; " + escape(style, true)}">${each(itemsToCols, (col) => {
+    return `<div class="${"col " + escape(columnClass, true) + " svelte-gz1f8p"}" style="${"gap: " + escape(gap, true) + "px; max-width: " + escape(maxColWidth, true) + "px;"}">${animate ? `${each(col, ([item, idx]) => {
+      return `<div class="svelte-gz1f8p">${slots.default ? slots.default({ idx, item }) : ``}
 					</div>`;
     })}` : `${each(col, ([item, idx]) => {
       return `${slots.default ? slots.default({ idx, item }) : ``}`;
@@ -368,7 +368,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let dialog;
   let isVisible = writable(false);
   $$unsubscribe_isVisible = subscribe(isVisible, (value) => $isVisible = value);
-  let [minColWidth, maxColWidth, gap] = [300, 500, 20];
+  let [minColWidth, maxColWidth, gap] = [250, 800, 20];
   let width, height;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
@@ -422,10 +422,15 @@ ${validate_component(Lightbox, "Lightbox").$$render(
       {
         currentItemIndex,
         galleryItems,
-        dialog,
-        isVisible
+        isVisible,
+        dialog
       },
-      {},
+      {
+        dialog: ($$value) => {
+          dialog = $$value;
+          $$settled = false;
+        }
+      },
       {}
     )}`;
   } while (!$$settled);

@@ -41,12 +41,13 @@
 			"email email" auto
 			"email-input email-input" auto
 			"message message" auto
-			"message-input message-input"
+			"message-input message-input" auto
 			"submit submit" auto / 1fr 1fr;
 		font-family: "Source Sans Pro", serif;
 		column-gap: 1em;
 		color: var(--text-color);
 		label {
+			width: 100%;
 			margin-bottom: 0.25em;
 			&[for="name"] {
 				grid-area: name;
@@ -62,6 +63,7 @@
 		}
 		input,
 		textarea {
+			width: 100%;
 			&:focus-visible {
 				border-color: var(--text-color);
 			}

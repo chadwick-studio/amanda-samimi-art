@@ -34,6 +34,7 @@
 	class="lightbox-container"
 	class:lightboxOpen={$isVisible === true}
 	on:keydown={handleDialogKeyDown}
+	bind:this={dialog}
 >
 	<div class="lightbox">
 		<LightboxFigure {...$galleryItems[$currentItemIndex]} />

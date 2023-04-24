@@ -16,10 +16,7 @@
 		? ""
 		: dimensionsHTML;
 	$: descriptionHTML =
-		`${titleHTML} <br>` +
-		mediumHTMLNoNull +
-		dimensionsHTMLNoNull +
-		year;
+		titleHTML + mediumHTMLNoNull + dimensionsHTMLNoNull + year;
 
 	import Video from "$lib/components/video/Video.svelte";
 	import Image from "$lib/components/image/Image.svelte";

@@ -4,7 +4,6 @@
 	import Lightbox from "$lib/components/lightbox/Lightbox.svelte";
 	import Masonry from "$lib/components/masonry/Masonry.svelte";
 	import { readable, writable } from "svelte/store";
-	import { onMount } from "svelte";
 	export let data;
 
 	const galleryItems = readable(
@@ -27,11 +26,8 @@
 		isVisible.set(true);
 	};
 
-	let [minColWidth, maxColWidth, gap] = [300, 500, 20];
+	let [minColWidth, maxColWidth, gap] = [250, 800, 20];
 	let width, height;
-	onMount(() => {
-		dialog = document.querySelector("dialog");
-	});
 </script>
 
 <svelte:head>
@@ -89,7 +85,7 @@
 		<div class="main-cube_border" />
 	</div>
 </div>
-<Lightbox {currentItemIndex} {galleryItems} {dialog} {isVisible} />
+<Lightbox {currentItemIndex} {galleryItems} bind:dialog {isVisible} />
 
 <style lang="scss">
 	.gallery-container {
