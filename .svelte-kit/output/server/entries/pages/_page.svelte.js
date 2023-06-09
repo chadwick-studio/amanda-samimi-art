@@ -362,6 +362,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $isVisible, $$unsubscribe_isVisible;
   let $galleryItems, $$unsubscribe_galleryItems;
   let { data } = $$props;
+  console.log(data);
   const galleryItems = readable(data.galleryItems.map((item, i) => ({ ...item, id: i })));
   $$unsubscribe_galleryItems = subscribe(galleryItems, (value) => $galleryItems = value);
   let currentItemIndex = writable(0);

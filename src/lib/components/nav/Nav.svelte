@@ -35,7 +35,7 @@
 		src: url("/fonts/clearlight.woff2") format("woff2");
 		font-weight: normal;
 		font-style: normal;
-		font-display: swap;
+		font-display: block;
 	}
 
 	@font-face {
@@ -43,7 +43,7 @@
 		src: url("/fonts/ortica-light.woff2") format("woff2");
 		font-weight: normal;
 		font-style: normal;
-		font-display: swap;
+		font-display: block;
 	}
 	.container,
 	.wrapper,

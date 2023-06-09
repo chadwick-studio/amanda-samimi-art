@@ -5,6 +5,7 @@
 	import Masonry from "$lib/components/masonry/Masonry.svelte";
 	import { readable, writable } from "svelte/store";
 	export let data;
+	console.log(data);
 
 	const galleryItems = readable(
 		data.galleryItems.map((item, i) => ({
