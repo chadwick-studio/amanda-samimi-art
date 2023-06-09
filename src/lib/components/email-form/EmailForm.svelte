@@ -25,7 +25,6 @@
 		height: 100%;
 		display: grid;
 		place-items: center;
-		overflow: scroll;
 	}
 	.email-form-wrapper {
 		border: 4px solid var(--email-primary-color);
