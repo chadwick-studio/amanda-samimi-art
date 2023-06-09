@@ -48,7 +48,6 @@
 		grid-template: repeat(2, auto) / 1fr;
 		min-height: 100vh; //fallback
 		min-height: 100dvh;
-		overflow: scroll;
 		&::before {
 			content: "";
 			position: absolute;
