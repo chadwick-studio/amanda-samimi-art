@@ -94,6 +94,10 @@
 		height: 100%;
 		color: white;
 		padding: 20px;
+		scrollbar-width: thin;
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
 	}
 	.main-cube {
 		&_side {
