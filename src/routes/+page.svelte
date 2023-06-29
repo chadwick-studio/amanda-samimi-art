@@ -100,6 +100,7 @@
 			background-color: var(--primary-color-background);
 			outline: 1px solid transparent;
 		}
+		z-index: 1;
 	}
 	.main-cube_border {
 		width: 100%;

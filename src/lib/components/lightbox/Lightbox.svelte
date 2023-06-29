@@ -105,6 +105,7 @@
 		width: 100%;
 		height: 100dvh;
 		height: 100vh; //fallback
+		isolation: isolate;
 		z-index: 99999;
 		border: none;
 		padding: 0;
