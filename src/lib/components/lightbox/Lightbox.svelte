@@ -102,7 +102,7 @@
 		&::backdrop {
 			all: revert;
 		}
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -116,6 +116,8 @@
 		background-color: rgb(0 0 0 / 0.9);
 		opacity: 0;
 		transition: opacity 300ms;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
 	}
 	.lightbox {
 		font-family: "Source Serif Pro";
