@@ -116,8 +116,8 @@
 		background-color: rgb(0 0 0 / 0.9);
 		opacity: 0;
 		transition: opacity 300ms;
-		backface-visibility: hidden;
-		-webkit-backface-visibility: hidden;
+		transform-style: preserve-3d;
+		transform: translateZ(1000px);
 	}
 	.lightbox {
 		font-family: "Source Serif Pro";
