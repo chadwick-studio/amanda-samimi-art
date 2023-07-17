@@ -103,8 +103,8 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 100dvh;
 		height: 100vh; //fallback
+		height: 100dvh;
 		isolation: isolate;
 		z-index: 99999;
 		border: none;
@@ -113,6 +113,7 @@
 		background-color: rgb(0 0 0 / 0.9);
 		opacity: 0;
 		transition: opacity 300ms;
+		transform: translateZ(1px);
 	}
 	.lightbox {
 		font-family: "Source Serif Pro";

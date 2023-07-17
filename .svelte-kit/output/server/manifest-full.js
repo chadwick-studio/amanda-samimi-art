@@ -4,7 +4,7 @@ export const manifest = {
 	assets: new Set(["fonts/clearlight.woff2","fonts/ortica-light.woff2","fonts/source-serif-pro.woff2"]),
 	mimeTypes: {".woff2":"font/woff2"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.9ef54d6b.js","imports":["_app/immutable/entry/start.9ef54d6b.js","_app/immutable/chunks/index.265b9c8a.js","_app/immutable/chunks/singletons.71f45af0.js","_app/immutable/chunks/index.e0e6d577.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.a74ab8a7.js","imports":["_app/immutable/entry/app.a74ab8a7.js","_app/immutable/chunks/preload-helper.41c905a7.js","_app/immutable/chunks/index.265b9c8a.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.cd36dd0d.js","imports":["_app/immutable/entry/start.cd36dd0d.js","_app/immutable/chunks/index.265b9c8a.js","_app/immutable/chunks/singletons.bf5f84bf.js","_app/immutable/chunks/index.e0e6d577.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.d4c6ecae.js","imports":["_app/immutable/entry/app.d4c6ecae.js","_app/immutable/chunks/preload-helper.41c905a7.js","_app/immutable/chunks/index.265b9c8a.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
