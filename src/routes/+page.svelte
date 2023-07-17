@@ -116,6 +116,7 @@
 		&_border {
 			border: 6px solid var(--primary-color);
 		}
+		z-index: 2;
 	}
 	@media (min-width: 1200px) {
 		.main-cube {
