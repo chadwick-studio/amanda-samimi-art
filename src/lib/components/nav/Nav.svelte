@@ -64,6 +64,7 @@
 		flex-direction: column;
 		justify-content: end;
 		container: nav / size;
+		transform: translateZ(-1px);
 	}
 	h1 {
 		--header-name: hsl(202, 81%, 73%);
