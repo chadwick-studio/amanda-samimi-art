@@ -103,7 +103,6 @@
 		@include cube(80, 180, 40, 10, -10);
 		margin-bottom: 5vw;
 		z-index: 2;
-		backface-visibility: hidden;
 		&_side {
 			background-color: var(--primary-color-background);
 			outline: 1px solid transparent;

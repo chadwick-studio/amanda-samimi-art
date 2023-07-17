@@ -102,4 +102,7 @@
 			margin-bottom: 0;
 		}
 	}
+	main {
+		position: relative;
+	}
 </style>

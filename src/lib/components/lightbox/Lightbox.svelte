@@ -99,7 +99,10 @@
 
 <style lang="scss">
 	.lightbox-container {
-		position: fixed;
+		&::backdrop {
+			all: revert;
+		}
+		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
