@@ -100,23 +100,18 @@
 		}
 	}
 	.main-cube {
+		@include cube(80, 180, 40, 10, -10);
+		margin-bottom: 5vw;
+		z-index: 2;
 		&_side {
 			background-color: var(--primary-color-background);
 			outline: 1px solid transparent;
 		}
-		z-index: 1;
-	}
-	.main-cube_border {
-		width: 100%;
-		height: 100%;
-	}
-	.main-cube {
-		@include cube(80, 180, 40, 10, -10);
-		margin-bottom: 5vw;
 		&_border {
 			border: 6px solid var(--primary-color);
+			width: 100%;
+			height: 100%;
 		}
-		z-index: 2;
 	}
 	@media (min-width: 1200px) {
 		.main-cube {
