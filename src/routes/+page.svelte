@@ -112,7 +112,6 @@
 	}
 	.main-cube {
 		@include cube(80, 180, 40, 10, -10);
-		transform: translateZ(-1px);
 		margin-bottom: 5vw;
 		&_border {
 			border: 6px solid var(--primary-color);

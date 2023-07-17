@@ -113,12 +113,12 @@
 		background-color: rgb(0 0 0 / 0.9);
 		opacity: 0;
 		transition: opacity 300ms;
-		transform: translateZ(1px);
 	}
 	.lightbox {
 		font-family: "Source Serif Pro";
 		color: $text-color;
 		position: relative;
+		z-index: 10;
 		display: grid;
 		place-items: center;
 		height: 100%;
