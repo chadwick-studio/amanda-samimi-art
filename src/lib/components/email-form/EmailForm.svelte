@@ -1,10 +1,31 @@
 <div class="email-form-container">
 	<div class="email-form-wrapper">
 		<form
-			action="https://formbold.com/s/oeWg9"
+			action="https://api.web3forms.com/submit"
 			method="POST"
 			class="email-form"
 		>
+			<input
+				type="hidden"
+				name="access_key"
+				value="d5003c0d-afa6-471c-813f-e885f8862822"
+			/>
+			<input
+				type="hidden"
+				name="from_name"
+				value="amandasamimi.com"
+			/>
+			<input
+				type="hidden"
+				name="redirect"
+				value="https://web3forms.com/success"
+			/>
+			<input
+				type="checkbox"
+				name="botcheck"
+				id=""
+				style="display: none;"
+			/>
 			<label for="name">Name</label>
 			<input type="text" name="name" required />
 			<label for="email">Email</label>

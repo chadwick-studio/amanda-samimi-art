@@ -6,7 +6,11 @@ const css$1 = {
 };
 const EmailForm = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css$1);
-  return `<div class="email-form-container svelte-14pv14h"><div class="email-form-wrapper svelte-14pv14h"><form action="https://formbold.com/s/oeWg9" method="POST" class="email-form svelte-14pv14h"><label for="name" class="svelte-14pv14h">Name</label>
+  return `<div class="email-form-container svelte-14pv14h"><div class="email-form-wrapper svelte-14pv14h"><form action="https://api.web3forms.com/submit" method="POST" class="email-form svelte-14pv14h"><input type="hidden" name="access_key" value="d5003c0d-afa6-471c-813f-e885f8862822" class="svelte-14pv14h">
+			<input type="hidden" name="from_name" value="amandasamimi.com" class="svelte-14pv14h">
+			<input type="hidden" name="redirect" value="https://web3forms.com/success" class="svelte-14pv14h">
+			<input type="checkbox" name="botcheck" id="" style="display: none;" class="svelte-14pv14h">
+			<label for="name" class="svelte-14pv14h">Name</label>
 			<input type="text" name="name" required class="svelte-14pv14h">
 			<label for="email" class="svelte-14pv14h">Email</label>
 			<input type="email" name="email" required class="svelte-14pv14h">
